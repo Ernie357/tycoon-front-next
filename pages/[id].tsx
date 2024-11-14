@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 
 const Game: React.FC = () => {
     const router = useRouter();
-    const { id } = router.query;
+    const { id, playerName, playerImage } = router.query;
     const defaultGameState: GameState = {
         activeCards: [],
         roundNumber: 0,
@@ -32,7 +32,6 @@ const Game: React.FC = () => {
         messages: [],
         roomCode: id && typeof(id) === 'string' ? id : ''
     };
-    const { playerName, playerImage } = router.query; 
     const [gameState, setGameState] = useState<GameState>(defaultGameState);
     const [socket, setSocket] = useState<Socket | null>(null);
     const [selectedCards, setSelectedCards] = useState<CardType[]>([]);

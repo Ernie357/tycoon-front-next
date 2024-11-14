@@ -94,7 +94,7 @@ const Landing: React.FC = () => {
         }
         const isRoomCodeValid = (await axios.get(`https://api.personatycoon.com/isRoomCodeValid?roomCode=${roomCode}`)).data;
         if(isRoomCodeValid) {
-            router.push(`/${roomCode}?playerName=${name}&playerImage=${playerImage}`);
+            router.push(`/${roomCode}?playerName=${encodeURIComponent(name)}&playerImage=${encodeURIComponent(playerImage)}`);
         } else {
             setErrorMessage(`Room ${formState.roomCode} does not exist.`);
         }
@@ -118,7 +118,7 @@ const Landing: React.FC = () => {
             return;
         }
         const newCode = (await axios.get('https://api.personatycoon.com/roomcode')).data;
-        newCode && router.push(`/${newCode}?playerName=${name}&playerImage=${playerImage}`);
+        newCode && router.push(`/${newCode}?playerName=${encodeURIComponent(name)}&playerImage=${encodeURIComponent(playerImage)}`);
     }
     const handleCharacterBackward = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
