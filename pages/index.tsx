@@ -4,6 +4,7 @@ import axios from "axios";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaLock, FaLockOpen } from "react-icons/fa";
 import { useRouter } from "next/router";
 import RoomAvailability from "@/components/RoomAvailability";
+import Rules from "./rules";
 
 interface FormStateType {
     roomCode: string,
@@ -152,6 +153,7 @@ const Landing: React.FC = () => {
     return (
         <div className="flex bg-gradient-to-br from-persona-red to-amber-500 bg-no-repeat object-contain font-main min-h-screen w-screen overflow-auto">
             <RoomAvailability />
+            <Rules />
             <div className="hidden 2xl:flex fixed 2xl:bottom-24 left-0 w-1/2 bg-ryuji bg-bottom bg-no-repeat h-full overflow-auto scale-125 object-cover"></div>
             <div className="mt-6 md:mt-0 w-full relative 2xl:w-6/12 2xl:left-1/2 flex flex-col pt-12 items-center h-screen">
                 <h1 className="shadow shadow-black text-base sm:text-2xl mb-5 md:mb-12 bg-white border-2 border-black p-3 w-3/4 text-center"><b>Welcome to personatycoon.com!</b></h1>
