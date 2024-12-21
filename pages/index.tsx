@@ -1,12 +1,14 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import Webcam from 'react-webcam';
 import axios from "axios";
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaLock, FaLockOpen } from "react-icons/fa";
 import { useRouter } from "next/router";
+import RoomAvailability from "@/components/RoomAvailability";
 
 interface FormStateType {
     roomCode: string,
-    playerName: string
+    playerName: string,
+    isPrivate: boolean
 }
 
 const Landing: React.FC = () => {
@@ -14,7 +16,8 @@ const Landing: React.FC = () => {
 
     const [formState, setFormState] = useState<FormStateType>({
         roomCode: '',
-        playerName: ''
+        playerName: '',
+        isPrivate: false
     });
     const [playerImage, setPlayerImage] = useState<string>('/ryuji.jpg');
     const [webcamOn, setWebcamOn] = useState<boolean>(false);
@@ -92,7 +95,7 @@ const Landing: React.FC = () => {
             setErrorMessage(`Name cannot exceed ${nameLimit} characters.`);
             return;
         }
-        const isRoomCodeValid = (await axios.get(`https://api.personatycoon.com/isRoomCodeValid?roomCode=${roomCode}`)).data;
+        const isRoomCodeValid = (await axios.get(`http://localhost:5001/isRoomCodeValid?roomCode=${roomCode}`)).data;
         if(isRoomCodeValid) {
             router.push(`/${roomCode}?playerName=${encodeURIComponent(name)}&playerImage=${encodeURIComponent(playerImage)}`);
         } else {
@@ -117,7 +120,7 @@ const Landing: React.FC = () => {
             setErrorMessage(`Name cannot exceed ${nameLimit} characters.`);
             return;
         }
-        const newCode = (await axios.get('https://api.personatycoon.com/roomcode')).data;
+        const newCode = (await axios.get(`http://localhost:5001/roomcode?name=${name}&isRoomPrivate=${formState.isPrivate}`)).data;
         newCode && router.push(`/${newCode}?playerName=${encodeURIComponent(name)}&playerImage=${encodeURIComponent(playerImage)}`);
     }
     const handleCharacterBackward = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -130,17 +133,27 @@ const Landing: React.FC = () => {
     }
     const handleCharacterForward = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-                if(characterIndex === characterImages.length - 1) {
+        if(characterIndex === characterImages.length - 1) {
             setCharacterIndex(0);
         } else {
             setCharacterIndex(prev => prev + 1);
         }
     }
+    const toggleRoomPrivacy = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        setFormState(prev => {
+            return {
+                ...prev,
+                isPrivate: !prev.isPrivate
+            };
+        })
+    }
     //<div className="hidden lg:block bg-ryuji bg-no-repeat w-6/12 min-h-screen bg-cover flex items-center justify-center" />
     return (
         <div className="flex bg-gradient-to-br from-persona-red to-amber-500 bg-no-repeat object-contain font-main min-h-screen w-screen overflow-auto">
+            <RoomAvailability />
             <div className="hidden 2xl:flex fixed 2xl:bottom-24 left-0 w-1/2 bg-ryuji bg-bottom bg-no-repeat h-full overflow-auto scale-125 object-cover"></div>
-            <div className="w-full relative 2xl:w-6/12 2xl:left-1/2 flex flex-col pt-12 items-center h-screen">
+            <div className="mt-6 md:mt-0 w-full relative 2xl:w-6/12 2xl:left-1/2 flex flex-col pt-12 items-center h-screen">
                 <h1 className="shadow shadow-black text-base sm:text-2xl mb-5 md:mb-12 bg-white border-2 border-black p-3 w-3/4 text-center"><b>Welcome to personatycoon.com!</b></h1>
                 <form className="h-full w-3/4 flex flex-col gap-5 md:gap-12">
                     <div className="flex items-center gap-5 md:gap-12">
@@ -149,14 +162,19 @@ const Landing: React.FC = () => {
                             value={formState.playerName}
                             onChange={handleInputChange}
                             name="playerName"
-                            className="shadow shadow-black border-2 border-black p-2 focus:outline-none w-3/4 h-10 sm:h-3/4 text-xs md:text-xl md:w-3/4 md:h-full" 
+                            className="shadow shadow-black border-2 border-black p-2 focus:outline-none w-7/12 h-10 sm:h-3/4 text-xs md:text-xl md:h-full" 
                             placeholder="Enter your name..."
                         />
                         <button 
                             onClick={handleCreateRoom}
-                            className="shadow shadow-black bg-white p-3 w-7/12 border-2 border-black text-sm h-10 sm:h-3/4 flex items-center justify-center md:text-xl md:h-full md:w-4/12 xl:w-1/4 hover:bg-gray-200"
+                            className="shadow shadow-black bg-white p-3 w-4/12 border-2 border-black text-xs h-10 sm:h-3/4 flex items-center justify-center md:text-xl md:h-full md:w-4/12 xl:w-1/4 hover:bg-gray-200"
                         >
                             Create Room
+                        </button>
+                        <button 
+                            onClick={toggleRoomPrivacy}
+                            className="flex items-center justify-center h-10 sm:h-3/4 md:h-full md:w-1/12 text-sm md:text-3xl font-bold font-semibold p-3 shadow shadow-black border-black border-2 hover:bg-gray-200 bg-white">
+                            {formState.isPrivate ? <FaLock /> : <FaLockOpen />}
                         </button>
                     </div>
                     <div className="flex items-center gap-5 md:gap-12">

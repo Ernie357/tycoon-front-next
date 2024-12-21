@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Script from 'next/script';
 import '../styles/globals.css';  // Make sure this imports the global Tailwind CSS file
 
 import type { AppProps } from 'next/app';  // AppProps is a Next.js type for props
@@ -39,11 +40,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   
           {/* Google AdSense */}
           <meta name="google-adsense-account" content="ca-pub-3727276762008014" />
-          <script
+          <Script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3727276762008014"
             crossOrigin="anonymous"
-          ></script>
+          ></Script>
           
           <title>Persona Tycoon - Online Tycoon Game</title>
         </Head>
