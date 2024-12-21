@@ -21,7 +21,7 @@ const AvailableRooms = () => {
   };
 
   const retrieveAndSetRooms = async () => {
-    const roomResponse: GameState[] = (await axios.get(`http://localhost:5001/rooms`)).data;
+    const roomResponse: GameState[] = (await axios.get(`https://api.personatycoon.com/rooms`)).data;
     setRooms(roomResponse);
   };
 
