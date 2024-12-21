@@ -116,7 +116,7 @@ const Game: React.FC = () => {
         }
     }, [gameState.roundNumber]);
     useEffect(() => {
-        const newSocket: Socket = io('http://localhost:5001', { transports: ['websocket', 'polling', 'flashsocket'] });
+        const newSocket: Socket = io('https://api.personatycoon.com', { transports: ['websocket', 'polling', 'flashsocket'] });
         setSocket(newSocket);
         newSocket.on('connect', () => {
             const stringState = localStorage.getItem('gameState');

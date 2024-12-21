@@ -95,7 +95,7 @@ const Landing: React.FC = () => {
             setErrorMessage(`Name cannot exceed ${nameLimit} characters.`);
             return;
         }
-        const isRoomCodeValid = (await axios.get(`http://localhost:5001/isRoomCodeValid?roomCode=${roomCode}`)).data;
+        const isRoomCodeValid = (await axios.get(`https://api.personatycoon.com/isRoomCodeValid?roomCode=${roomCode}`)).data;
         if(isRoomCodeValid) {
             router.push(`/${roomCode}?playerName=${encodeURIComponent(name)}&playerImage=${encodeURIComponent(playerImage)}`);
         } else {
@@ -120,7 +120,7 @@ const Landing: React.FC = () => {
             setErrorMessage(`Name cannot exceed ${nameLimit} characters.`);
             return;
         }
-        const newCode = (await axios.get(`http://localhost:5001/roomcode?name=${name}&isRoomPrivate=${formState.isPrivate}`)).data;
+        const newCode = (await axios.get(`https://api.personatycoon.com/roomcode?name=${name}&isRoomPrivate=${formState.isPrivate}`)).data;
         newCode && router.push(`/${newCode}?playerName=${encodeURIComponent(name)}&playerImage=${encodeURIComponent(playerImage)}`);
     }
     const handleCharacterBackward = (event: React.MouseEvent<HTMLButtonElement>) => {
