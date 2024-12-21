@@ -189,8 +189,6 @@ const Game: React.FC = () => {
         return message.sender !== null;
     });
 
-    console.log(gameState);
-
     return (
         <div className="bg-persona-red w-screen min-h-screen font-main">
             {shouldShowAds && <Ad />}
