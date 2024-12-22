@@ -17,6 +17,8 @@ module.exports = {
         'landing-city': "url('/landing-bg-city.jpg')",
         'landing-gang': "url('/landing-bg-gang.jpeg')",
         'landing-joker': "url('/landing-bg-joker.jpg')",
+        'landing-street': "url('/landing-bg-gang-street.jpg')",
+        'landing-street-phone:': "url('/landing-bg-gang-street-phone.jpg')",
         'persona-dialogue-box': "url('/persona-dialogue-box.png')"
       },
       width: {

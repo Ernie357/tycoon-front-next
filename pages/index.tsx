@@ -152,7 +152,7 @@ const Landing: React.FC = () => {
     }
     //<div className="hidden lg:block bg-ryuji bg-no-repeat w-6/12 min-h-screen bg-cover flex items-center justify-center" />
     return (
-        <div className="flex bg-gradient-to-br from-persona-red to-amber-500 bg-no-repeat object-contain font-main min-h-screen w-screen overflow-auto">
+        <div className="flex bg-persona-red bg-no-repeat font-main min-h-screen w-screen overflow-auto">
             <RoomAvailability />
             <Rules />
             <div className="hidden 2xl:flex fixed 2xl:bottom-24 left-0 w-1/2 bg-ryuji bg-bottom bg-no-repeat h-full overflow-auto scale-125 object-cover"></div>
