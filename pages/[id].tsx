@@ -118,7 +118,7 @@ const Game: React.FC = () => {
     }, [gameState.roundNumber]);
     useEffect(() => {
         let isRoomValid = true;
-        axios.get(`http://localhost:5001/isRoomValid?code=${id}&name=${playerName}&image=${playerImage}&hash=${hash}`)
+        axios.get(`https://api.personatycoon.com/isRoomValid?code=${id}&name=${playerName}&image=${playerImage}&hash=${hash}`)
         .then(res => {
             if(!res.data.success) {
                 isRoomValid = false;
@@ -126,7 +126,7 @@ const Game: React.FC = () => {
                 router.push('/');
             }
         });
-        const newSocket: Socket = io('http://localhost:5001', { transports: ['websocket', 'polling', 'flashsocket'] });
+        const newSocket: Socket = io('https://api.personatycoon.com', { transports: ['websocket', 'polling', 'flashsocket'] });
         newSocket.on('connect', () => {
             if(!isRoomValid) {
                 newSocket.disconnect();
