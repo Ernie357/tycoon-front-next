@@ -11,11 +11,12 @@ import EventLog from "../src/components/EventLog";
 import DialogueBox from "../src/components/DialogueBox";
 import Ad from "../src/components/Ad";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 
 const Game: React.FC = () => {
     const router = useRouter();
-    const { id, playerName, playerImage } = router.query;
+    const { id, playerName, playerImage, hash } = router.query;
     const defaultGameState: GameState = {
         activeCards: [],
         roundNumber: 0,
@@ -116,9 +117,22 @@ const Game: React.FC = () => {
         }
     }, [gameState.roundNumber]);
     useEffect(() => {
-        const newSocket: Socket = io('https://api.personatycoon.com', { transports: ['websocket', 'polling', 'flashsocket'] });
-        setSocket(newSocket);
+        let isRoomValid = true;
+        axios.get(`http://localhost:5001/isRoomValid?code=${id}&name=${playerName}&image=${playerImage}&hash=${hash}`)
+        .then(res => {
+            if(!res.data.success) {
+                isRoomValid = false;
+                alert('Invalid Url. Redirecting to Home.');
+                router.push('/');
+            }
+        });
+        const newSocket: Socket = io('http://localhost:5001', { transports: ['websocket', 'polling', 'flashsocket'] });
         newSocket.on('connect', () => {
+            if(!isRoomValid) {
+                newSocket.disconnect();
+                return;
+            }
+            setSocket(newSocket);
             const stringState = localStorage.getItem('gameState');
             const state: GameState = stringState ? JSON.parse(stringState) : null;
             if(state && state.roomCode && state.roomCode === id) {
@@ -147,7 +161,7 @@ const Game: React.FC = () => {
             window.removeEventListener('beforeunload', handleCleanup);
             handleCleanup();
         };
-    }, [id, playerName, playerImage]);
+    }, []);
 
     const user: User = useMemo(() => gameState.users.reduce((acc: any, cur: User) => {
         return cur.name === playerName ? cur : acc;
@@ -178,11 +192,11 @@ const Game: React.FC = () => {
     const userBoxes = gameState.users.map(user => <UserBox user={user} host={gameState.host} key={user.name} />);
 
     const activeCards = gameState.activeCards.map(card => {
-        return <img src={`/images/${card.image}`} alt={`${card.faceValue} of ${card.suit}`} className="max-w-16 md:max-w-24" />
+        return <img key={`/images/${card.image}`} src={`/images/${card.image}`} alt={`${card.faceValue} of ${card.suit}`} className="max-w-16 md:max-w-24" />
     });
 
     const cardsFromTrade = user ? user.cardsFromTrade.map(card => {
-        return <img src={`/images/${card.image}`} alt={`${card.faceValue} of ${card.suit}`} className="max-w-16 md:max-w-24" />
+        return <img key={`/images/${card.image}`} src={`/images/${card.image}`} alt={`${card.faceValue} of ${card.suit}`} className="max-w-16 md:max-w-24" />
     }) : <></>;
 
     const chatMessages = gameState.messages.filter((message: Message) => {

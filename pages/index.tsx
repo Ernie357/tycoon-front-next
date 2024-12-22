@@ -81,7 +81,7 @@ const Landing: React.FC = () => {
         const name = formState.playerName.trim();
         const roomCode = formState.roomCode.trim();
         if(name === '') {
-            setErrorMessage('Name cannot be empty.');
+            setErrorMessage('Name  cannot be empty.');
             return;
         }
         if(name.includes(' ')) {
@@ -96,9 +96,10 @@ const Landing: React.FC = () => {
             setErrorMessage(`Name cannot exceed ${nameLimit} characters.`);
             return;
         }
-        const isRoomCodeValid = (await axios.get(`https://api.personatycoon.com/isRoomCodeValid?roomCode=${roomCode}`)).data;
+        const isRoomCodeValid = (await axios.get(`http://localhost:5001/isRoomCodeValid?roomCode=${roomCode}`)).data;
         if(isRoomCodeValid) {
-            router.push(`/${roomCode}?playerName=${encodeURIComponent(name)}&playerImage=${encodeURIComponent(playerImage)}`);
+            const roomUrl = (await axios.get(`http://localhost:5001/roomcode?name=${name}&image=${playerImage}&roomCode=${roomCode}`)).data;
+            router.push(roomUrl);
         } else {
             setErrorMessage(`Room ${formState.roomCode} does not exist.`);
         }
@@ -121,8 +122,8 @@ const Landing: React.FC = () => {
             setErrorMessage(`Name cannot exceed ${nameLimit} characters.`);
             return;
         }
-        const newCode = (await axios.get(`https://api.personatycoon.com/roomcode?name=${name}&isRoomPrivate=${formState.isPrivate}`)).data;
-        newCode && router.push(`/${newCode}?playerName=${encodeURIComponent(name)}&playerImage=${encodeURIComponent(playerImage)}`);
+        const url = (await axios.get(`http://localhost:5001/roomcode?name=${name}&isRoomPrivate=${formState.isPrivate}&image=${playerImage}`)).data;
+        url && router.push(url);
     }
     const handleCharacterBackward = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();

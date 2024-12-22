@@ -11,6 +11,7 @@ module.exports = {
       },
       backgroundImage: {
         'ryuji': "url('/ryuji.png')",
+        'landing-stars': "url('/landing-bg-stars.png')",
         'landing-stripe': "url('/landing-bg-stripe.png')",
         'landing-swirl': "url('/landing-bg-swirl.gif')",
         'landing-city': "url('/landing-bg-city.jpg')",
