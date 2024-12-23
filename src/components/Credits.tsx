@@ -7,7 +7,7 @@ const Credits: React.FC = () => {
         setIsOpen(prevState => !prevState);
       };
     return (
-        <div className={`absolute top-4 right-32 md:left-[520px] md:right-0 ${isOpen ? 'z-50' : 'z-40'} mb-12`}>
+        <div className={`${isOpen ? 'z-50' : 'z-40'}`}>
             <button
                 onClick={toggleOpen}
                 className="px-4 py-2 rounded shadow border-2 border-black hover:bg-gray-200 shadow shadow-black bg-white text-sm md:text-3xl font-semibold"
@@ -30,6 +30,8 @@ const Credits: React.FC = () => {
                         <p className="text-4xl">All character drawings and assets by ATLUS.</p>
                         <br></br><br></br>
                         <p className="text-4xl">Persona 5 font by <u><a href="https://fontspace.io/persona-5-font/">Fontspace.</a></u></p>
+                        <br></br><br></br>
+                        <p className="text-4xl">Website designed by John Marseglia.</p>
                     </div>
                 </div>
             )}

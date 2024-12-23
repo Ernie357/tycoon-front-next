@@ -154,11 +154,13 @@ const Landing: React.FC = () => {
     //<div className="hidden lg:block bg-ryuji bg-no-repeat w-6/12 min-h-screen bg-cover flex items-center justify-center" />
     return (
         <div className="flex bg-persona-red bg-no-repeat font-p5 min-h-screen w-screen overflow-auto">
-            <RoomAvailability />
-            <Rules />
-            <Credits />
+            <div className="flex gap-4 absolute top-4 mb-12 justify-center sm:justify-start w-full sm:w-auto sm:ml-4">
+                <RoomAvailability />
+                <Rules />
+                <Credits />
+            </div>
             <div className="hidden 2xl:flex fixed 2xl:bottom-24 left-0 w-1/2 bg-ryuji bg-bottom bg-no-repeat h-full overflow-auto scale-125 object-cover"></div>
-            <div className="mt-6 md:mt-0 w-full relative 2xl:w-6/12 2xl:left-1/2 flex flex-col pt-12 items-center h-screen">
+            <div className="mt-6 md:mt-12 2xl:mt-0 w-full relative 2xl:w-6/12 2xl:left-1/2 flex flex-col pt-12 items-center h-screen">
                 <h1 className="shadow shadow-black text-xl sm:text-4xl tracking-wider mb-5 md:mb-12 bg-white border-2 border-black p-3 w-3/4 text-center"><b>Welcome to personatycoon.com!</b></h1>
                 <form className="h-full w-3/4 flex flex-col gap-5 md:gap-12">
                     <div className="flex items-center gap-5 md:gap-12">
