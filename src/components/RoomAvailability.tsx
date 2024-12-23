@@ -46,7 +46,7 @@ const AvailableRooms = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute top-0 left-0 h-full w-full md:w-1/2 bg-gradient-to-b from-orange-500 to-yellow-500 md:border-r-2 border-black shadow-2xl shadow-black z-50">
+        <div className="fixed top-0 left-0 h-full w-full md:w-1/2 bg-gradient-to-b from-orange-500 to-yellow-500 md:border-r-2 border-black shadow-2xl shadow-black z-50">
           <div className="flex items-center gap-8 border-b-2 border-black shadow shadow-black p-4">
             <button 
               onClick={toggleOpen} 
