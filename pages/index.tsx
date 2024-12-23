@@ -5,6 +5,7 @@ import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaLock, FaLockOpen } from 
 import { useRouter } from "next/router";
 import RoomAvailability from "@/components/RoomAvailability";
 import Rules from "./rules";
+import Credits from "@/components/Credits";
 
 interface FormStateType {
     roomCode: string,
@@ -152,12 +153,13 @@ const Landing: React.FC = () => {
     }
     //<div className="hidden lg:block bg-ryuji bg-no-repeat w-6/12 min-h-screen bg-cover flex items-center justify-center" />
     return (
-        <div className="flex bg-persona-red bg-no-repeat font-main min-h-screen w-screen overflow-auto">
+        <div className="flex bg-persona-red bg-no-repeat font-p5 min-h-screen w-screen overflow-auto">
             <RoomAvailability />
             <Rules />
+            <Credits />
             <div className="hidden 2xl:flex fixed 2xl:bottom-24 left-0 w-1/2 bg-ryuji bg-bottom bg-no-repeat h-full overflow-auto scale-125 object-cover"></div>
             <div className="mt-6 md:mt-0 w-full relative 2xl:w-6/12 2xl:left-1/2 flex flex-col pt-12 items-center h-screen">
-                <h1 className="shadow shadow-black text-base sm:text-2xl mb-5 md:mb-12 bg-white border-2 border-black p-3 w-3/4 text-center"><b>Welcome to personatycoon.com!</b></h1>
+                <h1 className="shadow shadow-black text-xl sm:text-4xl tracking-wider mb-5 md:mb-12 bg-white border-2 border-black p-3 w-3/4 text-center"><b>Welcome to personatycoon.com!</b></h1>
                 <form className="h-full w-3/4 flex flex-col gap-5 md:gap-12">
                     <div className="flex items-center gap-5 md:gap-12">
                         <input 
@@ -165,18 +167,18 @@ const Landing: React.FC = () => {
                             value={formState.playerName}
                             onChange={handleInputChange}
                             name="playerName"
-                            className="shadow shadow-black border-2 border-black p-2 focus:outline-none w-7/12 h-10 sm:h-3/4 text-xs md:text-xl md:h-full" 
+                            className="shadow shadow-black border-2 border-black p-2 focus:outline-none w-7/12 h-10 sm:h-3/4 text-xs md:text-2xl md:h-full" 
                             placeholder="Enter your name..."
                         />
                         <button 
                             onClick={handleCreateRoom}
-                            className="shadow shadow-black bg-white p-3 w-4/12 border-2 border-black text-xs h-10 sm:h-3/4 flex items-center justify-center md:text-xl md:h-full md:w-4/12 xl:w-1/4 hover:bg-gray-200"
+                            className="shadow shadow-black bg-white p-3 w-4/12 border-2 border-black text-xs h-10 sm:h-3/4 flex items-center justify-center md:text-3xl md:h-full md:w-4/12 xl:w-1/4 hover:bg-gray-200"
                         >
                             Create Room
                         </button>
                         <button 
                             onClick={toggleRoomPrivacy}
-                            className="flex items-center justify-center h-10 sm:h-3/4 md:h-full md:w-1/12 text-sm md:text-3xl font-bold font-semibold p-3 shadow shadow-black border-black border-2 hover:bg-gray-200 bg-white">
+                            className="flex items-center justify-center h-10 sm:h-3/4 md:h-full md:w-1/12 text-xs md:text-3xl font-bold font-semibold p-3 shadow shadow-black border-black border-2 hover:bg-gray-200 bg-white">
                             {formState.isPrivate ? <FaLock /> : <FaLockOpen />}
                         </button>
                     </div>
@@ -186,12 +188,12 @@ const Landing: React.FC = () => {
                             value={formState.roomCode}
                             onChange={handleInputChange}
                             name="roomCode"
-                            className="shadow shadow-black border-2 border-black p-2 focus:outline-none w-3/4 h-10 sm:h-3/4 text-xs md:text-xl md:w-3/4 md:h-full"
+                            className="shadow shadow-black border-2 border-black p-2 focus:outline-none w-3/4 h-10 sm:h-3/4 text-xs md:text-2xl md:w-3/4 md:h-full"
                             placeholder="Enter room code..." 
                         />
                         <button 
                             onClick={handleJoinRoom}
-                            className="shadow shadow-black bg-white p-3 w-7/12 border-2 border-black text-sm h-10 sm:h-3/4 flex items-center justify-center md:text-xl md:h-full md:w-4/12 xl:w-1/4 hover:bg-gray-200"
+                            className="shadow shadow-black bg-white p-3 w-7/12 border-2 border-black text-lg h-10 sm:h-3/4 flex items-center justify-center md:text-3xl md:h-full md:w-4/12 xl:w-1/4 hover:bg-gray-200"
                         >
                             Join Room
                         </button>
@@ -207,12 +209,12 @@ const Landing: React.FC = () => {
                             />
                             <label 
                                 htmlFor="player_picture_input" 
-                                className="shadow shadow-black bg-white p-3 border-2 border-black sm:w-1/2 text-center text-sm md:text-xl cursor-pointer hover:bg-gray-200"
+                                className="shadow shadow-black bg-white p-3 border-2 border-black sm:w-1/2 text-center text-2xl md:text-3xl cursor-pointer hover:bg-gray-200"
                             >
                                 Upload Picture
                             </label>
                             <button
-                                className="shadow shadow-black bg-white p-3 border-2 border-black sm:w-1/2 text-center text-sm md:text-xl sm:text-sm hover:bg-gray-200"
+                                className="shadow shadow-black bg-white p-3 border-2 border-black sm:w-1/2 text-center text-2xl md:text-3xl sm:text-sm hover:bg-gray-200"
                                 onClick={handleWebcamToggle}
                             >
                                 {webcamOn ? 'Close Camera' : 'Take a Picture'}

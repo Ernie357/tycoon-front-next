@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'main': 'Helvetica'
+        'main': 'Helvetica',
+        'p5': ['p5', 'Helvetica']
       },
       backgroundImage: {
         'ryuji': "url('/ryuji.png')",
@@ -28,6 +29,9 @@ module.exports = {
         '27-p': '27%',
         '30-p': '30%',
         '32-p': '32%'
+      },
+      left: {
+        '30rem': '30rem'
       },
       height: {
         '600': '600px',

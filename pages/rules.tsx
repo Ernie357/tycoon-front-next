@@ -7,10 +7,10 @@ const Rules: React.FC = () => {
         setIsOpen(prevState => !prevState);
       };
     return (
-        <div className={`absolute top-4 right-4 md:left-72 ${isOpen ? 'z-50' : 'z-40'} mb-12`}>
+        <div className={`absolute top-4 right-4 md:left-80 ${isOpen ? 'z-50' : 'z-40'} mb-12`}>
             <button
                 onClick={toggleOpen}
-                className="px-4 py-2 rounded shadow border-2 border-black hover:bg-gray-200 shadow shadow-black bg-white text-sm md:text-xl font-semibold"
+                className="px-4 py-2 rounded shadow border-2 border-black hover:bg-gray-200 shadow shadow-black bg-white text-sm md:text-3xl font-semibold"
             >
                 How to Play
             </button>
@@ -19,20 +19,20 @@ const Rules: React.FC = () => {
                     <div className="border-b-2 border-black shadow shadow-black p-4">
                         <button 
                             onClick={toggleOpen} 
-                            className="text-sm md:text-xl font-semibold px-4 py-2 shadow shadow-black border-black border-2 hover:bg-gray-200 bg-white h-12"
+                            className="text-sm md:text-3xl font-semibold px-4 py-2 shadow shadow-black border-black border-2 hover:bg-gray-200 bg-white h-12"
                             >
                             Close
                         </button>
                     </div>
                     <div className="p-5 h-[calc(100vh-100px)] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                         <h2 className="text-4xl mb-3"><b><u>Objective</u></b></h2>
-                        <p className="mb-8 text-xl">
+                        <p className="mb-8 text-3xl">
                             The goal of Tycoon is simply to run out of the cards in your hand. The earlier
                             you run out of cards, the more points you get for the round. The player with the most 
                             points after 3 rounds is the winner.
                         </p>
                         <h2 className="text-4xl mb-3"><b><u>How to Play Cards</u></b></h2>
-                        <p className="mb-8 text-xl">
+                        <p className="mb-8 text-3xl">
                             You can only play cards on your turn. If there are no active cards, or you have reset the turn, 
                             you can freely play up to 4 cards. If multiple cards are played, 
                             they must be the same value (ex: 2 Queens, 3 Aces, 4 Fives, etc.). 
@@ -42,7 +42,7 @@ const Rules: React.FC = () => {
                             number of cards that they played.
                         </p>
                         <h2 className="text-4xl mb-3"><b><u>Specific Card Rules</u></b></h2>
-                        <p className="mb-8 text-xl">
+                        <p className="mb-8 text-3xl">
                             <b>Joker: </b>The Joker is the highest value card in the game. It also
                             acts as a wildcard that can replicate another card being played. For example,
                             a Queen and a Joker played simply acts as 2 Queens.
@@ -57,7 +57,7 @@ const Rules: React.FC = () => {
                             Three of Spades, similar to playing an Eight.
                         </p>
                         <h2 className="text-4xl mb-3"><b><u>Events</u></b></h2>
-                        <p className="mb-8 text-xl">
+                        <p className="mb-8 text-3xl">
                             <b>Turn Reset: </b>If the every other player passes their turn, or a special
                             card like an Eight is played, the turn is reset to the person that played the
                             last card. In this case, the player that reset the turn can play whatever they
@@ -75,7 +75,7 @@ const Rules: React.FC = () => {
                             cards they want, but the Poor and the Beggar must trade their highest value cards.
                         </p>
                         <h2 className="text-4xl mb-3"><b><u>Points and Standings</u></b></h2>
-                        <p className="mb-8 text-xl">
+                        <p className="mb-8 text-3xl">
                             By the end of each round, each player will have a rank. The order of ranks 
                             from highest points to lowest goes as follows: Tycoon with 30 points, Rich with
                             20 points, Poor with 10 points, and Beggar with 0 points. These points are added

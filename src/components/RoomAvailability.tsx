@@ -40,7 +40,7 @@ const AvailableRooms = () => {
     <div className={`absolute top-4 left-4 ${isOpen ? 'z-50' : 'z-40'} mb-12`}>
       <button
         onClick={toggleOpen}
-        className="px-4 py-2 rounded shadow border-2 border-black hover:bg-gray-200 shadow shadow-black bg-white text-sm md:text-xl font-semibold"
+        className="px-4 py-2 rounded shadow border-2 border-black hover:bg-gray-200 shadow shadow-black bg-white text-sm md:text-3xl font-semibold"
       >
         Show Available Rooms
       </button>
@@ -50,7 +50,7 @@ const AvailableRooms = () => {
           <div className="flex items-center gap-8 border-b-2 border-black shadow shadow-black p-4">
             <button 
               onClick={toggleOpen} 
-              className="text-sm md:text-xl font-semibold px-4 py-2 shadow shadow-black border-black border-2 hover:bg-gray-200 bg-white h-12"
+              className="text-sm md:text-3xl font-semibold px-4 py-2 shadow shadow-black border-black border-2 hover:bg-gray-200 bg-white h-12"
             >
               Close Available Rooms
             </button>
